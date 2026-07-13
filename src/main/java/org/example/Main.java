@@ -1,18 +1,43 @@
 package org.example;
-import java.sql.DriverManager;
-import java.sql.SQLOutput;
 
+import java.sql.*;
+import java.util.Scanner;
+
+//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
+// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        String URL = "jdbc:mysql//localhost:3306/db2";
+        String URL ="jdbc:mysql://localhost:3306/student";
         String USER = "root";
-        String PASSWORD = "Satya@2005";
+        String PASSWORD = "Rintu@1234";
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
+
+            Connection con = DriverManager.getConnection(URL,USER,PASSWORD);
+
+            PreparedStatement pr=con.prepareStatement("insert into student_data values (?,?,?)");
+            System.out.println("Enter id  : \n name :\n Domain :");
+            Scanner sc = new Scanner(System.in);
+
+
+            pr.setInt(1,sc.nextInt());
+            sc.nextLine();
+            pr.setString(2,sc.nextLine());
+            pr.setString(3,sc.nextLine());
+
+            //4th Step(Execute Query)
+            int rowsaffect = pr.executeUpdate();
+            System.out.println(rowsaffect);
+            if(rowsaffect>0){
+                System.out.println("Data inserted");
+            }
+            con.close();
+
+
+
+        } catch ( SQLException e) {
             throw new RuntimeException(e);
         }
 
-        System.out.println("Database connected sucessfully");
+
     }
 }
