@@ -7,9 +7,9 @@ import java.util.Scanner;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        String URL ="jdbc:mysql://localhost:3306/student";
+        String URL ="jdbc:mysql://localhost:3306/db2";
         String USER = "root";
-        String PASSWORD = "Rintu@1234";
+        String PASSWORD = "Satya@2005";
         try {
 
             Connection con = DriverManager.getConnection(URL,USER,PASSWORD);
